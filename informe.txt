@@ -1,0 +1,65 @@
+INFORME - PRÁCTICA INDIVIDUAL N° 2
+
+1. NOMBRE DEL ESTUDIANTE
+Luna Quisbert Javier Rodrigo
+
+2. TÍTULO DEL CASO
+Tiempo de servicio en el mostrador de una farmacia (30 clientes de prueba)
+
+3. FORMULACIÓN DEL PROBLEMA
+Una farmacia atiende a sus clientes en un solo mostrador. Queremos conocer cuánto
+tarda en promedio la atención de cada cliente, qué tan variable es ese tiempo y si
+existen atenciones anormalmente largas, para evaluar si el mostrador puede generar
+filas y retrasar el trabajo.
+
+4. VARIABLE PRINCIPAL
+tiempo_servicio_min: duración de la atención de cada cliente, en minutos
+tiempo_entre_llegadas_min.: duracion Tambien en minutos
+
+5. SUPUESTOS
+- Datos simulados con numpy (semilla 2026), n = 30 clientes.
+- Tiempo de servicio ~ Exponencial (media teórica 4.5 min).
+- Tiempo entre llegadas ~ Exponencial (media teórica 6.0 min).
+- Un solo servidor (un mostrador) y observaciones independientes.
+- Outlier: dato con |Z| > 3, con Z = (x - media) / desviación estándar muestral.
+
+6. ESTADÍSTICOS DESCRIPTIVOS (tiempo_servicio_min)
+n            = 30
+Media        = 5.108 min
+Mediana      = 4.085 min
+Desv. est.   = 4.263 min
+Varianza     = 18.171 min²
+Mínimo       = 0.020 min
+Máximo       = 13.860 min
+Rango        = 13.840 min
+Q1           = 1.490 min
+Q3           = 7.228 min
+Asimetría    = 0.744
+Curtosis     = -0.638
+Media de tiempo entre llegadas = 5.953 min
+
+7. VALORES ATÍPICOS (OUTLIERS) CON Z-SCORE
+Criterio |Z| > 3: no se detectó ningún outlier.
+Dato más extremo: cliente 26, 13.86 min, Z = 2.053 (por debajo del umbral;
+solo se considera una atención larga, no un valor atípico).
+
+8. ANÁLISIS DESCRIPTIVO DE LA VARIABLE
+La media (5.108) es mayor que la mediana (4.085) y la asimetría es positiva (0.744):
+la distribución tiene cola derecha, es decir, muchas atenciones cortas y pocas muy
+largas. La desviación estándar (4.263) es cercana a la media (coeficiente de
+variación ≈ 83 %), lo que indica alta variabilidad y es coherente con una
+distribución exponencial.
+
+9. INTERPRETACIÓN TÉCNICA
+Con media de servicio 5.108 min y media de llegadas 5.953 min, la utilización del
+mostrador es ρ = 5.108 / 5.953 ≈ 0.86 (86 %). El sistema es estable (ρ < 1) pero
+está muy cargado: con tiempos tan variables, las atenciones largas pueden acumular
+clientes y formar filas. La ausencia de outliers indica que el proceso es regular
+dentro de su variabilidad natural y no hay eventos anómalos en la muestra.
+
+10. CONCLUSIÓN
+El tiempo de servicio promedio es 5.11 min con alta variabilidad y sesgo a la
+derecha, sin valores atípicos según Z-Score (|Z| > 3). Como el mostrador opera al
+86 % de utilización, se recomienda monitorear la fila en horas pico y considerar un
+segundo punto de atención. Limitación: n = 30 y datos simulados; con más datos
+reales las conclusiones podrían cambiar.
